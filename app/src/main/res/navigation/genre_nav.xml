@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/genre_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="iglo.indocyber.newsapitest.fragment.home.HomeFragment"
+        android:label="HomeFragment">
+        <action android:id="@+id/toEverything"
+            app:destination="@+id/everythingFragment"/>
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/everythingFragment"
+        android:name="iglo.indocyber.newsapitest.fragment.everything.EverythingFragment"
+        android:label="EverythingFragment">
+        <argument android:name="source" app:argType="iglo.indocyber.common.entity.source.Source" app:nullable="false"/>
+        <action android:id="@+id/toArticleDetail"
+            app:destination="@+id/articleDetailFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="iglo.indocyber.newsapitest.fragment.article_detail.ArticleDetailFragment"
+        android:label="ArticleDetailFragment">
+        <argument android:name="link" app:argType="string" app:nullable="false"/>
+
+    </fragment>
+
+
+</navigation>
