@@ -34,32 +34,11 @@ abstract class BaseFragment<VM: BaseViewModel, Binding: ViewDataBinding> : Fragm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        parentFragment?.let {
-            if(it is BaseFragment<*,*>){
-                vm.parent = it.vm
-            }
-        }
+
         vm.navigationtEvent.observe(this) {
             findNavController().navigate(it)
         }
-        vm.showDialogEvent.observe(this) {
-            AlertDialog.Builder(requireContext()).setTitle(
-                it.title
-            ).setMessage(it.message).apply {
-                it.positiveButton?.let {
-                    setPositiveButton(it.first) { dialog, flag ->
-                        it.second.invoke()
-                    }
-                }
-                it.negativeButton?.let {
-                    setNegativeButton(it.first) { dialog, flag ->
-                        it.second.invoke()
-                    }
-                }
-            }.create().show()
-        }
-        vm.popBackStackEvent.observe(this) {
-            findNavController().popBackStack()
-        }
+
+
     }
 }
